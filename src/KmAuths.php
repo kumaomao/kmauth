@@ -6,7 +6,7 @@
  * Time: 17:52
  */
 
-namespace kumaomao\kmauth;
+namespace Kumaomao\kmauth;
 
 
 use Swoft\Bean\Annotation\Mapping\Inject;

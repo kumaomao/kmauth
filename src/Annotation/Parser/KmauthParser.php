@@ -5,13 +5,13 @@
  * Date: 2019/7/22
  * Time: 17:47
  */
-namespace kumaomao\kmauth\Annotation\Parser;
+namespace Kumaomao\kmauth\Annotation\Parser;
 
 use Doctrine\Common\Annotations\DocParser;
-use kumaomao\kmauth\KmauthRegister;
+use Kumaomao\kmauth\KmauthRegister;
 use Swoft\Annotation\Annotation\Mapping\AnnotationParser;
 use Swoft\Annotation\Annotation\Parser\Parser;
-use kumaomao\kmauth\Annotation\Mapping\Kmauth;
+use Kumaomao\kmauth\Annotation\Mapping\Kmauth;
 
 /**
  * @AnnotationParser(Kmauth::class)
@@ -30,7 +30,7 @@ class KmauthParser extends Parser
 
        $route = $this->getRoute();
         //处理路径
-        \kumaomao\kmauth\KmAuths::setPath([
+        \Kumaomao\kmauth\KmAuths::setPath([
             'class'=>$this->className,
             'method'=>$this->methodName,
             'name'=>$name,

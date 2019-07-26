@@ -5,13 +5,13 @@
  * Date: 2019/7/24
  * Time: 11:51
  */
-namespace kumaomao\kmauth\Bean;
+namespace Kumaomao\kmauth\Bean;
 use Swoft\Bean\Annotation\Mapping\Bean;
 use Swoft\Db\DB;
 
 /**
  * Class KmauthBean
- * @package kumaomao\kmauth\Bean
+ * @package Kumaomao\kmauth\Bean
  * @Bean("kmauth")
  */
 class AuthBean

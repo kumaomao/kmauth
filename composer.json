@@ -1,19 +1,19 @@
 {
     "name": "kumaomao/kmauth",
-    "description": "just for test",
-    "type": "library",
-    "license": "MIT",
+    "description": "权限控制",
+	"version":"v1.0.0",
     "authors": [
         {
             "name": "kumaomao",
-            "email": "z1083271136@163.com"
+            "email": "1083271136@qq.com"
         }
     ],
-    "minimum-stability": "dev",
-    "authload": {
+	"autoload": {
         "psr-4": {
-            "kumaomao\\kmauth\\": "src/"
-        }
+            "Kumaomao\\kmauth\\": "src/"
+        },
+        "files": [
+        ]
     },
     "require": {}
 }

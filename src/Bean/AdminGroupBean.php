@@ -6,7 +6,7 @@
  * Time: 16:56
  */
 
-namespace kumaomao\kmauth\Bean;
+namespace Kumaomao\kmauth\Bean;
 
 use Swoft\Bean\Annotation\Mapping\Bean;
 use Swoft\Db\DB;
@@ -14,7 +14,7 @@ use Swoft\Db\DB;
 /**
  * 用户组
  * Class AdminGroupBean
- * @package kumaomao\kmauth\Bean
+ * @package Kumaomao\kmauth\Bean
  * @Bean("adminGroup")
  */
 class AdminGroupBean

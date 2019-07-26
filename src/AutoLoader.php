@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace kumaomao\kmauth;
+namespace Kumaomao\kmauth;
 
 use function dirname;
 use Swoft\Helper\ComposerJSON;
 use Swoft\SwoftComponent;
 
 /**
- * Class authLoader
+ * Class AutoLoader
  * @since 2.0
  */
 class AutoLoader extends SwoftComponent
