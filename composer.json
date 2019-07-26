@@ -1,7 +1,7 @@
 {
     "name": "kumaomao/kmauth",
     "description": "权限控制",
-	"version":"v1.0.0",
+	"version":"1.0.1",
     "authors": [
         {
             "name": "kumaomao",
