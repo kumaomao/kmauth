@@ -1,0 +1,19 @@
+{
+    "name": "kumaomao/kmauth",
+    "description": "just for test",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kumaomao",
+            "email": "z1083271136@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "authload": {
+        "psr-4": {
+            "kumaomao\\kmauth\\": "src/"
+        }
+    },
+    "require": {}
+}
