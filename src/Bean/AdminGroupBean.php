@@ -27,7 +27,7 @@ class AdminGroupBean
      * @method 获取用户组列表
      * @return array
      */
-    public function adminGrouplist():array
+    public function getAdminGroup():array
     {
         $db_admin_aroup = $this->dbAdminGroup();
         $list = $db_admin_aroup->get();
@@ -47,12 +47,12 @@ class AdminGroupBean
         $db_admin_aroup = $this->dbAdminGroup();
         $data['update_time'] = time();
         if(isset($data['id'])){
-            $db_admin_aroup->batchUpdateByIds($data);
+            $result = $db_admin_aroup->batchUpdateByIds($data);
         }else{
             $data['create_time'] = time();
-            $db_admin_aroup->insert($data);
+            $result = $db_admin_aroup->insert($data);
         }
-        return true;
+        return $result;
     }
 
     /**

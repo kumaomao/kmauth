@@ -28,11 +28,17 @@ class AuthGroupBean
      * @method 获取权限组列表
      * @return array
      */
-    public function authGrouplist():array
+    public function getAuthGroup(array $options):array
     {
         $db_auth_aroup = $this->dbAuthGroup();
-        $list = $db_auth_aroup->get();
-        return $list->toArray();
+        if(isset($options['limit']) && is_numeric($options['limit'])){
+            $limit = $options['limit'];
+            $page = (isset($options['page']) && is_numeric($options['page']))?$options['page']:1;
+            $list = $db_auth_aroup->paginate($page,$limit);
+        }else{
+            $list['list'] = $db_auth_aroup->get()->toArray();
+        }
+        return $list;
     }
 
     /**
@@ -47,13 +53,14 @@ class AuthGroupBean
     {
         $db_auth_aroup = $this->dbAuthGroup();
         $data['update_time'] = time();
+        $data['permissions'] = is_array($data['permissions'])?implode(',',$data['permissions']):$data['permissions'];
         if(isset($data['id'])){
-            $db_auth_aroup->batchUpdateByIds($data);
+           $result =  $db_auth_aroup->batchUpdateByIds($data);
         }else{
             $data['create_time'] = time();
-            $db_auth_aroup->insert($data);
+            $result = $db_auth_aroup->insert($data);
         }
-        return true;
+        return $result;
     }
 
 
@@ -65,8 +72,9 @@ class AuthGroupBean
      * @throws \Swoft\Bean\Exception\ContainerException
      * @throws \Swoft\Db\Exception\DbException
      */
-    public function delAuthGroup(array $ids){
+    public function delAuthGroup($ids){
         $db_auth_aroup = $this->dbAuthGroup();
+        $ids = is_array($ids)?$ids:explode(',',$ids);
         $result = $db_auth_aroup->whereIn('id',$ids)->delete();
         return $result;
     }

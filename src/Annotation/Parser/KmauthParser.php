@@ -27,8 +27,7 @@ class KmauthParser extends Parser
         $name  = $annotationObject->getName();
         $type = $annotationObject->isType();
         $menu = $annotationObject->isMenu();
-
-       $route = $this->getRoute();
+        $route = $this->getRoute();
         //处理路径
         \Kumaomao\kmauth\KmAuths::setPath([
             'class'=>$this->className,
@@ -58,7 +57,7 @@ class KmauthParser extends Parser
         //获取注解
         $string = trim(substr($class_doc, $class_pos), '* /');
         //方法注释解析
-        preg_match('/Controller\("(.+?)"\)/', $string, $class_matches);
+        preg_match('/Controller\((.+?)\)/', $string, $class_matches);
         $matches['class'] = $class_matches;
 
         $method = $reflection->getMethod($this->methodName);
@@ -67,7 +66,7 @@ class KmauthParser extends Parser
         //获取注解
         $string = trim(substr($method_doc, $method_pos), '* /');
         //方法注释解析
-        preg_match('/RequestMapping\("(.+?)"\)/', $string, $method_matches);
+        preg_match('/RequestMapping\((.+?)\)/', $string, $method_matches);
         $matches['method'] = $method_matches;
         return $matches;
     }
@@ -77,14 +76,47 @@ class KmauthParser extends Parser
         $class_route = '';
         $method_route = '';
         if($routes['class'] && isset($routes['class'][1])){
-            $class_route = $routes['class'][1];
+            $class_route = $this->getClassRoute($routes['class'][1]);
         }
         if($routes['method'] && isset($routes['method'][1])){
-            $method_route = $routes['method'][1];
+            $method_route = $this->getMethodRoute($routes['method'][1]);
             $frist = substr( $method_route, 0, 1 );
             $method_route = $frist=="/"?$method_route:$class_route.'/'.$method_route;
         }
         return $method_route;
+    }
+
+    /**
+     * 处理方法注解
+     * @param $methodRoute
+     * @return string
+     */
+    private function getMethodRoute($methodRoute){
+        if(strpos($methodRoute,',') !== false){
+            //分割字符串
+            $temp = explode(",",$methodRoute);
+            $methodRoute = $temp[0];
+            if(strpos($methodRoute,'route=') !== false){
+                $methodRoute =  ltrim($methodRoute,"route=");
+            }
+        }
+        $methodRoute =  trim($methodRoute,"\"");
+        return $methodRoute;
+    }
+
+    /**
+     * 处理类注解
+     * @param $classRoute
+     * @return string
+     */
+    private function getClassRoute($classRoute){
+        if(strpos($classRoute,'prefix=') !== false){
+            $classRoute =  ltrim($classRoute,"prefix=");
+        }
+        $classRoute =  trim($classRoute,"\"");
+        $frist = substr( $classRoute, 0, 1 );
+        $classRoute = $frist=="/"?$classRoute:'/'.$classRoute;
+        return $classRoute;
     }
 
 

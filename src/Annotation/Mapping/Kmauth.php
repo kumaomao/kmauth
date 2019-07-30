@@ -5,7 +5,7 @@
  * Date: 2019/7/22
  * Time: 17:38
  */
-namespace kumaomao\kmauth\Annotation\Mapping;
+namespace Kumaomao\kmauth\Annotation\Mapping;
 
 use Doctrine\Common\Annotations\Annotation\Target;
 use Doctrine\Common\Annotations\Annotation\Attributes;
@@ -57,15 +57,16 @@ final class Kmauth
 
     public function __construct(array $value)
     {
-
-        if(isset($value['name']) || isset($data['value'])){
+        if(isset($value['name'])){
             $this->name = $value['name'];
+        }else if(isset($value['value'])){
+            $this->name = $value['value'];
         }else{
             $this->name = '鬼知道这是什么';
         }
         //默认为权限节点
-        $this->type = isset($data['type'])?$data['type']:self::AUTH;
-        $this->menu = isset($data['menu'])?$data['menu']:self::IS_MENU;
+        $this->type = $value['type'] ?? self::AUTH;
+        $this->menu = $value['menu'] ?? self::IS_MENU;
     }
 
     /**
