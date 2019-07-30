@@ -97,15 +97,15 @@ class KmAuths
 
     /**
      * @method 获取用户组
-     * @param array $options
+     * @param int $id
      * @return mixed
      * @throws \ReflectionException
      * @throws \Swoft\Bean\Exception\ContainerException
      */
-    public static function getAdminGroup(array $options=[])
+    public static function getAdminGroup(int $id)
     {
         $adminGroup = self::adminGroupBean();
-        $result = $adminGroup->getAdminGroup($options);
+        $result = $adminGroup->getAdminGroup($id);
         return $result;
     }
 

@@ -27,10 +27,10 @@ class AdminGroupBean
      * @method 获取用户组列表
      * @return array
      */
-    public function getAdminGroup():array
+    public function getAdminGroup(int $id):array
     {
         $db_admin_aroup = $this->dbAdminGroup();
-        $list = $db_admin_aroup->get();
+        $list = $db_admin_aroup->where('admin_id',$id)->get();
         return $list->toArray();
     }
 
